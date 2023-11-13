@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Palette */
+    --primary-yellow-solid: #fdd306;
+    --primary-yellow-900: rgba(253, 211, 6, 0.9);
+    --primary-yellow-500: rgba(253, 211, 6, 0.5);
+    --primary-yellow-300: rgba(253, 211, 6, 0.3);
+
+    --primary-blue-solid: #0693e3;
+    --primary-blue-900: rgba(6, 147, 227, 0.9);
+    --primary-blue-500: rgba(6, 147, 227, 0.5);
+    --primary-blue-300: rgba(6, 147, 227, 0.3);
+
+    --secondary-orange-solid: #f39c12;
+    --secondary-orange-900: rgba(243, 156, 18, 0.9);
+    --secondary-orange-500: rgba(243, 156, 18, 0.5);
+    --secondary-orange-300: rgba(243, 156, 18, 0.3);
+
+    --secondary-magenta-solid: #e15bba;
+    --secondary-magenta-900: rgba(225, 91, 186, 0.9);
+    --secondary-magenta-500: rgba(225, 91, 186, 0.5);
+    --secondary-magenta-300: rgba(225, 91, 186, 0.3);
+
+
+    --dark-solid: #1F1F1F;
+    --dark-900: rgba(31, 31, 31, 0.9);
+    --dark-500: rgba(31, 31, 31, 0.5);
+    --dark-300: rgba(31, 31, 31, 0.3);
+
+    --dark-bg-solid: #34485e;
+    --light-bg-solid: #FAFAFF;
+    --light-font-solid: #FFFFFF;
+
+    /* Typography */
+    --base-font: 'Quicksand', sans-serif;
+
+
+    /*Font Size*/
+
+    /*Titulares*/
+    --font-display: 2.3em;
+    /*h1*/
+    --font-large: 2em;
+    /*h2*/
+    --font-medium: 1.7em;
+    /*h3*/
+    --font-regular: 1.4em;
+    /*h4*/
+
+    /*Cuerpo*/
+    --font-small: 1.5em;
+    /*p Bajada de titulares*/
+    --font-xsmall: 1.2em;
+    /*p Textos lectura*/
+
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+html {
+    font-size: 62.5%;
+}
