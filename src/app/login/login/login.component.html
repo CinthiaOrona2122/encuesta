@@ -1,0 +1,65 @@
+<section>
+    <!-- <app-accesibilitybutton></app-accesibilitybutton> -->
+    <div class="container-fluid intro-item">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                    <div class="card bg-transparent border-0 text-center">
+                        <div class="card-body titulares">
+                            <div class="d-flex flex-column flex-nowrap px-4 text-start">
+                                <h1 class="fw-bold">{{titulo}}</h1>
+                                <h4>{{subtitulo}}</h4>
+                            </div>
+                        </div>
+                    </div> 
+            </div>
+            <div class="col-xs-12 col-sm-10 col-md-6 col-lg-6 d-flex justify-content-center"> 
+                <div class="card w-75 border-0">
+                    <div class="card-header border-0 bg-transparent text-center">
+                        <h5 class="fw-bold fs-3">Por favor, ingresá tus datos</h5>
+                    </div>
+                    <!-- Inicio Formulario -->
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+                        <div class="card-body">
+                            <!--Inicio Login -->
+                            <div class="mb-5">
+                                <input type="email" class="form-control" id="email" aria-describedby="email"
+                                    placeholder="Email" formControlName="email" name="email">
+                                <small *ngIf="email.invalid && (email.dirty || email.touched)" class="error-msg">
+                                    <div *ngIf="email.errors?.['required']">El Email es requerido.
+                                    </div>
+                                    <div *ngIf="email.errors?.['email']">El Email debe ser válido.
+                                    </div>
+                                </small>
+                            </div>
+
+                            <div class="pb-4 mb-4">
+                                <input type="text" class="form-control" id="dni" aria-describedby="dni"
+                                    placeholder="DNI" formControlName="dni" name="dni">
+                                <div>
+                                    <small *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="error-msg">
+                                        <div *ngIf="dni.errors?.['required']">El Dni es requerido.
+                                        </div>
+                                        <div *ngIf="dni.errors?.['dni']">El Dni debe ser válido.
+                                        </div>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-0 bg-transparent  text-center">
+                            <div class="mb-4">
+                                <button type="submit" class="btn text-dark"
+                                    [disabled]="!loginForm.valid">Continuar</button>
+                            </div>
+                            <div class="help-link">
+                                <a href="https://aulasvirtuales.bue.edu.ar/login/forgot_password.php" target="_blank">
+                                    <p class="text-uppercase">Olvidaste tus datos? Click aqui</p>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Fin Formulario -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

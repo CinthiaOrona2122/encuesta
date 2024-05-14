@@ -1,0 +1,11 @@
+section{
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+img#fence{
+    width: 60px;
+    padding-left: 1rem;
+}

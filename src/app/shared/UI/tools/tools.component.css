@@ -1,0 +1,9 @@
+span {
+    width: 40px;
+    height: auto;
+    display: block;
+}
+
+img.logout-logo {
+    width: 100%;
+}

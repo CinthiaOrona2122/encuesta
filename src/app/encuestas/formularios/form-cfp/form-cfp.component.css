@@ -1,0 +1,333 @@
+div.slider-container {
+    overflow: hidden;
+    position: relative;
+    height: 99dvh;
+    /* 100% de la altura de la ventana, si se anula el contenido se convierte en scrollea */
+}
+
+
+
+div.viewport {
+    transition: transform 0.3s linear;
+}
+
+div.intro-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    height: 100dvh;
+}
+
+
+div.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+div.formulario {
+    overflow: hidden;
+    position: relative;
+}
+
+div.modal-dialog {
+    top: 11rem;
+}
+
+/*********** SCROLL de las opciones de respuesta ***********/
+
+.hover-overflow {
+    overflow-y: auto;
+    position: relative;
+    /* Asegura que el overflow esté oculto por defecto */
+    max-height: 59em;
+    /* Define una altura máxima para demostrar el overflow en hover, ajusta según necesidad */
+}
+
+.hover-overflow::-webkit-scrollbar {
+    width: .6rem;
+}
+
+.hover-overflow::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-orange-solid);
+    border-radius: 6px;
+}
+
+
+/* Scroll Up */
+.prev,
+.next {
+    cursor: pointer;
+}
+
+
+.prev img {
+    width: 50px;
+    height: auto;
+    right: 1rem;
+    position: fixed;
+    bottom: 28.8rem;
+}
+
+.next img {
+    width: 50px;
+    height: auto;
+    right: 1rem;
+    position: fixed;
+    bottom: 20.8rem;
+}
+
+.send img {
+    width: 30px;
+    height: auto;
+}
+
+.show-button {
+    display: contents;
+}
+
+/* Cerrar pantalla completa */
+
+.close,
+.open {
+    cursor: pointer;
+    position: absolute;
+    top: 12rem;
+    right: 1rem;
+    border: none;
+    background-color: transparent;
+}
+
+.close img {
+    width: 30px;
+    height: auto;
+}
+
+
+.open img {
+    width: 30px;
+    height: auto;
+}
+
+/*********** Boton Logout ***********/
+
+article {
+    /* display: flex; */
+    cursor: pointer;
+    position: absolute;
+    top: 11.5rem;
+    left: 1rem;
+}
+
+img.return-logo {
+    width: 22%;
+}
+
+
+div.btn-enviar {
+    position: sticky;
+    bottom: 11rem;
+}
+
+/******** HAMBURGUER MENU **********/
+
+.ham-menu-formulario {
+    position: fixed;
+    top: 11rem;
+    right: 1.5rem;
+}
+
+/******* CONTADOR DE PREGUNTAS ****/
+
+div.counter {
+    right: 2rem;
+    bottom: 16rem;
+    position: fixed;
+    font-weight: 700;
+}
+
+div.counter p {
+    font-size: var(--font-regular);
+}
+
+/**********************************/
+
+button[type="submit"] {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0.71rem 1.4rem;
+    font-size: var(--font-medium);
+    color: var(--dark-solid);
+    background-color: var(--dark-bg-shadow);
+    border: 2px solid black;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--primary-yellow-solid);
+    box-shadow: 1px 3px 8px -2px var(--dark-bg-solid);
+}
+
+input[type="submit"] {
+    background: transparent;
+}
+
+
+label.btn {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0.71rem 1.4rem;
+    font-size: var(--font-regular);
+    font-weight: 500;
+    color: var(--dark-solid);
+    background-color: var(--dark-bg-shadow);
+    border: 2px solid black;
+}
+
+label.btn:hover {
+    background-color: var(--primary-yellow-solid);
+    box-shadow: 1px 3px 8px -2px var(--dark-bg-solid);
+}
+
+
+/************ CHECKBOX SELECCIONADOS **************/
+
+label.checked-background {
+    background-color: var(--primary-yellow-solid);
+}
+
+
+/*************  PROGRESSBAR  *************/
+
+.taskbar {
+    width: 100%;
+    background-color: #fff;
+    height: 0.6em;
+}
+
+.taskbar-progress {
+    height: 100%;
+    background-color: #FDD306;
+    width: 0%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+
+/************* BANNER NOMBRE ENCUESTA *******************/
+
+div.encuesta-nombre {
+    background-color: rgba(253, 227, 98, 0.849);
+    padding: 0.5rem 1rem;
+    font-size: var(--font-xsmall);
+    text-align: center;
+    font-weight: 700;
+    width: 100%;
+}
+
+/******************* Media Queries **********************/
+
+/*Celulares*/
+
+@media (max-width: 767px) {
+    section {
+        background: white;
+        height: 100dvh;
+    }
+
+    label.btn {
+        word-break: normal;
+    }
+
+    div.titulo {
+        width: 75%;
+    }
+
+    /* titulares h1, h2, h3, h4*/
+    div.titulares {
+        text-align: left;
+    }
+
+    div.titulares h2 {
+        font-size: var(--font-medium);
+    }
+
+    .subtitulo h4 {
+        font-size: var(--font-regular);
+    }
+
+    div.formulario {
+        width: 75%;
+    }
+
+    div.saludo h2 {
+        padding-bottom: 5rem;
+    }
+
+    /* Asegura que el overflow esté oculto por defecto */
+    /* Define una altura máxima para demostrar el overflow en hover, ajusta según necesidad */
+    .hover-overflow {
+        overflow-y: auto;
+        position: relative;
+        max-height: 59em;
+    }
+
+    .prev img {
+        width: 50px;
+        height: auto;
+        right: 1px;
+        position: fixed;
+        bottom: 28.8rem;
+    }
+
+    .next img {
+        width: 50px;
+        height: auto;
+        right: 1px;
+        position: fixed;
+        bottom: 20.8rem;
+    }
+
+    .open img {
+        right: 7px;
+        width: 22px;
+        height: auto;
+    }
+
+    .close img {
+        right: 7px;
+        width: 22px;
+        height: auto;
+    }
+
+    div.counter {
+        right: 1rem;
+        bottom: 16rem;
+        position: fixed;
+        font-weight: 700;
+    }
+}
+
+/* PC o Tv's */
+@media (min-width: 768px) and (max-width: 1800px) {
+
+    div.titulo {
+        width: 80%;
+    }
+
+    div.titulares {
+        text-align: left;
+    }
+
+    div.titulares h2 {
+        font-size: var(--font-display);
+    }
+
+    div.formulario {
+        width: 75%;
+    }
+}

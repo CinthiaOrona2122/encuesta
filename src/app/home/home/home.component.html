@@ -1,1 +1,300 @@
-<p>home works!</p>
+<article class="position-absolute">
+       <app-tools></app-tools>
+</article>
+
+
+<section>
+    <div class="container-fluid intro-item">
+        <div class="row" id="opcionEncuesta">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                <div class="card bg-transparent border-0 text-center ms-md-4 ms-sm-4">
+
+                    <!-- Inicio template User -->
+                    <!-- Lado izquierdo -->
+                    <div class="card-body titulares" *ngIf="!isAdmin">
+                        <div>
+                            <h2 class="fw-bold">Por favor, elegí el curso que completastes</h2>
+                        </div>
+                    </div>
+                    <!-- Fin template User -->
+
+                    <!-- Inicio template Admin -->
+                    <!-- Lado izquierdo -->
+                    <div class="card-body" *ngIf="isAdmin">
+                        <div class="mx-auto">
+                            <h1>Usuario Administrador</h1>
+                        </div>
+                    </div>
+                    <!-- Fin template Admin -->
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                <div class="d-flex flex-column justify-content-center">
+                    <div class="card encuestaOpciones">
+
+                        <!-- Inicio template User -->
+                        <!-- Lado derecho -->
+                        <div class="card-body" *ngIf="!isAdmin">
+                            <div *ngFor="let encuesta of encuestas ; let i = index">
+                                <button class="btn text-dark" type="button" id="{{encuesta.id}}"
+                                    [ngClass]="{'checked-background': isOptionSelected(encuesta.id)}"
+                                    (change)="isOptionSelected(encuesta.id)" (click)="guardarEleccion(encuesta.id, i)">
+                                    {{encuesta.nombre}}
+                                </button>
+                            </div>
+                            <div class="mt-4 mx-auto">
+                                <button (click)="responderEncuesta()" type="button"
+                                    class="d-flex flex-row justify-content-center responderEncuesta">
+                                    Ir a la Encuesta
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Fin template User -->
+
+                        <!-- Inicio template Admin -->
+                        <!-- Lado derecho -->
+                        <div class="card-body" *ngIf="isAdmin">
+                            <div class="mx-auto">
+                                <button type="button" (click)="irAlDashboard()" class="mx auto mt-5">
+                                    Ir al Dashboard
+                                </button>
+                            </div>
+                        </div> 
+                                  <!-- Fin template Admin -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Template condicional, cuando termina de validar los datos, se oculta el form enviado y se muestran los registrados -->
+<ng-container *ngTemplateOutlet="template; context: isSubmitted"></ng-container>
+<ng-template #template let-isSubmitted="isSubmitted">
+
+    <section *ngIf="!isSubmitted">
+        <div class="container-fluid intro-item">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                    <div class="card bg-transparent border-0 text-center ms-md-4 ms-sm-4">
+                        <div class="card-body titulares">
+                            <div>
+                                <h2 class="fw-bold">Por favor, confirmá tus datos</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                    <form [formGroup]="FormularioDatosPersonales" (ngSubmit)="onSubmit()">
+                        <div class="card border-0 formulario">
+                            <div class="card-body">
+                                <div class="container d-flex flex-column justify-content-center">
+                                    <!-- Email -->
+                                    <div class="pb-4 mb-2 d-flex flex-column">
+                                        <label for="email" class="form-label" aria-label="email">Email</label>
+                                        <input class="form-control" type="text" id="email" formControlName="email"
+                                            name="email" readonly>
+                                    </div>
+
+                                    <!-- Residencia (Seleccion) -->
+                                    <div class="pb-4 mb-3 d-flex flex-column">
+                                        <label for="residencia" class="form-label">Lugar de residencia</label>
+                                        <select class="form-select" aria-label="residencia" formControlName="residencia"
+                                            name="residencia">
+                                            <option *ngFor="let lugar of lugarResidencia" [ngValue]="lugar.name">
+                                                {{ lugar.name }}
+                                            </option>
+                                        </select>
+                                        <div>
+                                            <small *ngIf="residencia.invalid" class="error-msg">
+                                                <div *ngIf="residencia.errors?.['required']">La zona de residencia
+                                                    es
+                                                    requerida.
+                                                </div>
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <!-- DNI -->
+                                    <div class="pb-4 mb-3 d-flex flex-column">
+                                        <label for="dni" class="form-label">DNI</label>
+                                        <input class="form-control" type="text" id="dni" placeholder="12345678"
+                                            formControlName="dni" name="dni" aria-label="dni" [minlength]="8"
+                                            [maxlength]="20" inputmode="decimal">
+                                        <div>
+                                            <small *ngIf="dni.invalid" class="error-msg">
+                                                <div *ngIf="dni.errors?.['required']">El numero de DNI es requerido.
+                                                </div>
+                                                <div *ngIf="dni.errors?.['dni']">El DNI debe ser válido.
+                                                </div>
+                                                <div *ngIf="dni.errors?.['pattern']">Solo debe contener números.
+                                                </div>
+                                                <div *ngIf="dni.errors?.['minLength']">Minimo 8 caracteres.</div>
+
+                                                <div *ngIf="dni.errors?.['maxLength']">Máximo 20 caracteres.</div>
+                                                <div *ngIf="FormularioDatosPersonales.errors?.['dniCuilMismatch']">
+                                                    El DNI y el CUIL no coinciden.</div>
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <!-- CUIL -->
+                                    <div class="pb-4 mb-4 d-flex flex-column">
+                                        <label for="cuil" class="form-label">CUIL</label>
+                                        <input class="form-control" type="text" id="cuil" placeholder="27123456782"
+                                            formControlName="cuil" name="cuil" aria-label="cuil" [minlength]="11"
+                                            [maxlength]="20" inputmode="decimal">
+                                        <div>
+                                            <small *ngIf="cuil.invalid" class="error-msg">
+                                                <div *ngIf="cuil.errors?.['required']">El numero de CUIL es
+                                                    requerido.
+                                                </div>
+                                                <div *ngIf="cuil.errors?.['cuil']">El CUIL debe ser válido.
+                                                </div>
+                                                <div *ngIf="cuil.errors?.['pattern']">Solo debe contener números.
+                                                </div>
+                                                <div *ngIf="cuil.errors?.['minLength']">Minimo 11 caracteres.</div>
+
+                                                <div *ngIf="cuil.errors?.['maxLength']">Máximo 20 caracteres.</div>
+                                                <div *ngIf="FormularioDatosPersonales.errors?.['dniCuilMismatch']">
+                                                    El DNI y el CUIL no coinciden.</div>
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <!-- Nacimiento -->
+                                    <div class="pb-4 mb-4 d-flex flex-column">
+                                        <label for="nacimiento" class="form-label">Fecha de nacimiento</label>
+                                        <input class="form-control" type="text" id="nacimiento"
+                                            formControlName="nacimiento" name="nacimiento" aria-label="nacimiento"
+                                            placeholder="dd/mm/yy" [minlength]="8" [maxlength]="10">
+                                        <div>
+                                            <small *ngIf="nacimiento.invalid" class="error-msg">
+                                                <!-- Mensajes de error específicos para nacimiento -->
+                                                <div *ngIf="nacimiento.errors?.['required']">La fecha de nacimiento
+                                                    es
+                                                    requerida.</div>
+                                                <div *ngIf="nacimiento.errors?.['nacimiento']">La fecha debe ser
+                                                    válida.
+                                                </div>
+                                                <div *ngIf="nacimiento.errors?.['minLength']">Debe tener al menos 8
+                                                    caracteres.</div>
+                                                <div *ngIf="nacimiento.errors?.['maxLength']">No debe exceder los 10
+                                                    caracteres.</div>
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <!-- Genero (Seleccion) -->
+                                    <div class="pb-4 mb-4 d-flex flex-column">
+                                        <label for="genero" class="form-label">Genero</label>
+                                        <select class="form-select" aria-label="genero" formControlName="genero"
+                                            name="genero">
+                                            <option class="text-capitalize" *ngFor="let genero of listaGenero"
+                                                [ngValue]="genero.name">
+                                                {{ genero.name }}
+                                            </option>
+                                        </select>
+                                        <div>
+                                            <small *ngIf="genero.invalid" class="error-msg">
+                                                <div *ngIf="genero.errors?.['required']">El genero es requerido.
+                                                </div>
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="pb-4 mb-4">
+                                        <button type="submit" class="btn submit" id="btnSubmit"
+                                            [disabled]="!FormularioDatosPersonales.valid">
+                                            Continuar
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Fin del Formulario -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario dehsabilitado, solo muestra los campos actualizados en la ultima sesion -->
+    <section *ngIf="isSubmitted">
+        <div class="container-fluid intro-item">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                    <div class="card bg-transparent border-0 text-center ms-md-4 ms-sm-4">
+                        <div class="card-body titulares">
+                            <div>
+                                <h2 class="fw-bold">Tus datos fueron actualizados exitosamente.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                    <form [formGroup]="FormularioDatosPersonales">
+                        <div class="card border-0 formulario">
+                            <div class="card-body">
+                                <div class="container d-flex flex-column justify-content-center">
+                                    <div *ngFor="let data of formData">
+                                        <!-- Email -->
+                                        <div class="pb-4 d-flex flex-column">
+                                            <label for="email" class="form-label" aria-label="email">Email</label>
+                                            <input class="form-control" type="text" id="email" placeholder={{email}}
+                                                readonly>
+                                        </div>
+
+                                        <!-- Residencia (Seleccion) -->
+                                        <div class="pb-4 d-flex flex-column">
+                                            <label for="residencia" class="form-label">Lugar de residencia</label>
+                                            <input class="form-control" type="text" id="residencia"
+                                                placeholder={{data.lugarDeNacimiento}} readonly>
+                                        </div>
+
+                                        <!-- DNI -->
+                                        <div class="pb-4 d-flex flex-column">
+                                            <label for="dni" class="form-label">DNI</label>
+                                            <input class="form-control" type="text" id="dni" placeholder={{data.dni}}
+                                                readonly>
+                                        </div>
+
+                                        <!-- CUIL -->
+                                        <div class="pb-4 d-flex flex-column">
+                                            <label for="cuil" class="form-label">CUIL</label>
+                                            <input class="form-control" type="text" id="cuil" placeholder={{data.cuil}}
+                                                readonly>
+                                        </div>
+
+                                        <!-- Nacimiento -->
+                                        <div class="pb-4 d-flex flex-column">
+                                            <label for="nacimiento" class="form-label">Fecha de nacimiento</label>
+                                            <input class="form-control" type="text" id="nacimiento"
+                                                placeholder={{data.fechaDeNacimiento}} readonly>
+                                        </div>
+
+                                        <!-- Genero (Seleccion) -->
+                                        <div class="pb-4 d-flex flex-column">
+                                            <label for="genero" class="form-label">Genero</label>
+                                            <input class="form-control" type="text" id="nacimiento"
+                                                placeholder={{data.genero}} readonly>
+                                        </div>
+
+                                        <div class="pb-4 mt-4">
+                                            <button type="submit" class="btn submit" id="btnSubmit" [disabled]="true">
+                                                Continuar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Fin del Formulario -->
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-template>
+

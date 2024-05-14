@@ -1,0 +1,14 @@
+<div class="off-screen-menu" #offScreenMenu>
+    <ul>
+        <li (click)="regresar()">Volver</li>
+        <li (click)="openFullscreen()">Agrandar</li>
+        <li (click)="closeFullscreen()">Minimizar</li>
+    </ul>
+</div>
+
+
+<div class="ham-menu" (click)="toggleMenu()" #hamMenu>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>

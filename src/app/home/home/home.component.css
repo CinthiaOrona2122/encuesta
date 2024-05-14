@@ -1,0 +1,199 @@
+/*Mensajes de error en inputs*/
+.error-msg {
+    display: flex;
+    position: absolute;
+    color: red;
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    line-height: 2.4em;
+    font-stretch: expanded;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+
+input.placeholder:focus {
+    color: whitesmoke;
+}
+
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100dvh;
+}
+
+div.card-body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+    gap: 1em;
+}
+
+label {
+    font-size: var(--font-regular);
+}
+
+label.btn {
+    font-size: var(--font-regular);
+}
+
+input[type="text"],
+input[type="email"],
+select.form-select {
+    width: 100%;
+    border-radius: 9px;
+    cursor: pointer;
+    padding: 0.5rem 1.4rem;
+    font-size: var(--font-regular);
+    letter-spacing: 1px;
+    font-weight: 500;
+    background-color: transparent;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+select.form-select:hover {
+    outline-offset: none;
+    border-radius: 11px;
+    border: 2px solid var(--primary-yellow-solid);
+}
+
+input[type="text"]:focus,
+input[type="text"]:focus-within,
+input[type="email"]:focus,
+input[type="email"]:focus-within,
+select.form-select:focus,
+select.form-select:focus-within {
+    outline-offset: none;
+    border-radius: 9px;
+    border: 2px solid var(--primary-yellow-solid);
+    background-color: white;
+}
+
+button[type="button"],
+button[type="submit"] {
+    width: 100%;
+    border-radius: 11px;
+    cursor: pointer;
+    padding: 0.71rem 1.4rem;
+    font-size: var(--font-medium);
+    font-weight: 500;
+    color: var(--dark-solid);
+    background-color: var(--dark-bg-shadow);
+    border: 2px solid black;
+}
+
+button[type="submit"]:disabled {
+    background-color: var(--dark-500);
+    border: 1px solid lightblue;
+    color: #fff;
+
+}
+
+button[type="button"]:hover,
+button[type="submit"]:hover {
+    background-color: var(--primary-yellow-solid);
+    box-shadow: 1px 3px 8px -2px var(--dark-bg-solid);
+}
+
+button.checked-background {
+    background-color: var(--primary-yellow-solid);
+}
+
+div.encuestaOpciones {
+    border: 3px solid var(--dark-bg-shadow);
+    border-radius: 12px;
+    padding: 3rem 4rem;
+}
+
+
+button.responderEncuesta {
+    padding: 1rem 2rem;
+    font-size: var(--font-regular);
+    border-radius: 11px;
+
+}
+
+
+button.down {
+    cursor: pointer;
+    position: absolute;
+    top: 39.5rem;
+    background-color: transparent;
+    border: none;
+    animation: jumping 1047ms infinite ease-out;
+}
+
+
+.down img {
+    width: 30px;
+    height: auto;
+}
+
+/*Animaciones*/
+@keyframes jumping {
+    to {
+        transform: translate(0px, 15px);
+    }
+}
+
+article{
+    display: flex;
+    position: fixed;
+    left: 1rem;
+    top: 8rem;
+}
+
+
+/******************* Media Queries **********************/
+
+/*Celulares*/
+
+@media (max-width: 767px) {
+    section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        background: none;
+        padding-bottom: 10rem;
+    }
+
+
+    /* titulares h1, h2, h3, h4*/
+    div.titulares {
+        padding-bottom: 3rem;
+    }
+
+    form {
+        width: 80%;
+    }
+
+    div.encuestaOpciones {
+        border: none;
+        padding: 1rem 3rem;
+    }
+
+    button.down {
+        position: absolute;
+        top: 35.5rem;
+        background-color: transparent;
+        border: none;
+    }
+
+}
+
+
+/*PC o Tv's*/
+@media (min-width: 768px) and (max-width: 1800px) {
+
+    form {
+        width: 90%;
+    }
+}

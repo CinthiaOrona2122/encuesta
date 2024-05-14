@@ -1,0 +1,105 @@
+<div class="container-fluid top m-0 p-0">
+    <!-- Nombre de la encuesta seleccionada -->
+    <div class="encuesta-nombre" *ngIf="dataEncuesta">{{dataEncuesta.nombre}}</div>
+    <!-- ProgressBar -->
+    <div class="taskbar border-bottom border-light-subtle">
+        <div class="taskbar-progress" [style.width]="getProgressWidth() + '%'"></div>
+    </div>
+</div>
+
+<section>
+    <form [formGroup]="FormularioEmpleabilidad" (ngSubmit)="onSubmit($event)">
+        <div class="slider-container">
+            <div class="viewport" [style.transform]="'translateY(' + (-currentBlock * 100) + 'vh)'">
+
+                <!-- Inicio template preguntas -->
+                <ng-container *ngFor="let pregunta of preguntas; let i = index">
+
+                    <div class="container-fluid intro-item  py-sm-5 py-md-5">
+                        <div class="row">
+
+                            <!-- Titulos de preguntas -->
+
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                                <div class="card bg-transparent border-0 titulo text-center">
+                                    <div class="card-body titulares py-0">
+                                        <h2>{{ pregunta.texto }}</h2>
+                                        <div class="subtitulo" *ngIf="pregunta?.subtitulo">
+                                            <h4>{{ pregunta.subtitulo }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opciones de respuesta -->
+
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                                <div class="card border-0 formulario">
+                                    <div class="card-body hover-overflow">
+
+                                        <div *ngFor="let opcion of pregunta.respuesta.opciones, let opIndex = index">
+                                            <label [for]="opcion+pregunta.id" class="btn mb-2"
+                                                [ngClass]="{'checked-background': isOptionSelected(pregunta.id, opcion)}">
+                                                <input type="checkbox" [id]="opcion+pregunta.id" [value]="opcion"
+                                                    [checked]="isOptionSelected(pregunta.id, opcion)"
+                                                    (change)="onCheckboxChange(pregunta.id, opcion)"                                                    
+                                                    class="btn-check" />
+                                                {{ opcion }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Se muestra el mensaje de agradecimiento al llegar a la última pregunta -->
+                    <ng-container *ngIf="i === preguntas.length - 1">
+                        <ng-container *ngTemplateOutlet="saludo"></ng-container>
+                    </ng-container>
+
+                    <!-- Inicio template #saludo -->
+                    <ng-template #saludo>
+                        <div class="container-fluid text-center intro-item">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center align-self-center">
+                                    <h2 class="fw-bold">Gracias por responder la encuesta</h2>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <label class="btn my-2 w-50 round">
+                                        <input class="border-0 input-submit" type="submit" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <!-- Fin template #saludo -->
+                </ng-container>
+                <!-- Fin template preguntas -->
+            </div>
+        </div>
+    </form>
+
+
+    <!-- Ver en pantalla completa -->
+    <button (click)="openFullscreen()" class="open" *ngIf="!isFullscreen">
+        <img src="../../../../assets/logos/open_fullscreen.svg" alt="open-fullscreen-icon" title="fullScreen-logo">
+    </button>
+
+    <!-- Volver a pantalla normal -->
+    <button (click)="closeFullscreen()" class="close" *ngIf="isFullscreen">
+        <img src="../../../../assets/logos/close_fullscreen.svg" alt="close-fullscreen-icon" title="close-fullScreen-logo">
+    </button>
+
+    <!-- Volver a la pregunta anterior -->
+    <button (click)="moveBlock('prev')" class="prev me-sm-4" [ngClass]="{'show-button': showButtonPrev}"
+        *ngIf="currentBlock > 0">
+        <img src="../../../../assets/logos/arrow-up-circle.svg" alt="logo-subir-pregunta" title="Previo-logo">
+    </button>
+
+    <!-- Pasar a la pregunta siguiente -->
+    <button (click)="moveBlock('next')" class="next me-sm-4" [ngClass]="{'show-button': showButtonNext}">
+        <img src="../../../../assets/logos/circle-down-regular.svg" alt="logo-bajar-pregunta" title="Siguiente-logo">
+    </button>
+
+</section>

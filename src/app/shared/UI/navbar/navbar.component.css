@@ -1,0 +1,107 @@
+header {
+   padding: 0;
+   margin: 0;
+   display: flex;
+   position: relative;
+   z-index: 1000;
+}
+
+.navbar {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   align-items: center;
+   background-color: #fff;
+   box-shadow: 17px -6px 6px 6px var(--dark-bg-solid);
+
+}
+
+
+article {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+.article-1 {
+   width: 29em;
+}
+
+.article-2 {
+   width: 27rem;
+}
+
+ul {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+li {
+   padding-left: 1em;
+   font-size: var(--font-xsmall);
+}
+
+div.brand-title {
+   width: 32.7em;
+}
+
+.brand-title,
+h3 {
+   padding-left: 1rem;
+   align-items: center;
+   font-weight: 700;
+}
+
+
+img {
+   width: 70%;
+   height: auto;
+}
+
+.search-icon {
+   width: 1.4em;
+   margin-left: 3em;
+}
+
+button[type="button"] {
+   padding: 0.71rem 3.4rem;
+   word-spacing: 1%;
+   font-size: var(--font-regular);
+   border: 1px solid var(--primary-blue-500);
+   background-color: transparent;
+   border-radius: 12px;
+}
+
+
+/*Celulares*/
+
+@media (max-width: 767px) {
+   img {
+      width: 70%;
+   }
+
+   .agencia-logo {
+      width: 50%;
+   }
+
+   .article-1 {
+      width: 20rem;
+   }
+
+   div.brand-title {
+      width: 22rem;
+   }
+
+   .brand-title,
+   h3 {
+      /* font-size: var(--font-xsmall); */
+      padding-left: 0.3rem;
+      align-items: center;
+      font-weight: 600;
+   }
+}
+
+/*PC o Tv's*/
+@media (min-width: 768px) and (max-width: 1800px) {}

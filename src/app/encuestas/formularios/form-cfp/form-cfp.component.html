@@ -1,1 +1,119 @@
-<p>form-cfp works!</p>
+<div class="container-fluid top m-0 p-0">
+    <!-- Nombre de la encuesta seleccionada -->
+    <div class="encuesta-nombre" id={{dataEncuesta.id}} *ngIf="dataEncuesta">{{dataEncuesta.nombre}}</div>
+    <!-- ProgressBar -->
+    <div class="taskbar border-bottom border-light-subtle">
+        <div class="taskbar-progress" [style.width]="getProgressWidth() + '%'"></div>
+    </div>
+</div>
+
+
+
+<section>
+    <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit($event)">
+        <div class="slider-container">
+            <div class="viewport" [style.transform]="'translateY(' + (-blockOffset(currentBlock) * 100) + '%)'">
+                <!-- Inicio template preguntas -->
+                <ng-container *ngFor="let pregunta of preguntas; let i = index">
+                    <div class="container-fluid intro-item m-0 p-0">
+                        <div class="row">
+
+                            <!-- Titulos de preguntas -->
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                                <div class="card bg-transparent border-0 titulo text-center">
+                                    <div class="card-body titulares py-0">
+                                        <h2>{{ pregunta.texto }}</h2>
+                                        <div class="subtitulo" *ngIf="pregunta?.subtitulo">
+                                            <h4>{{ pregunta.subtitulo }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Opciones de respuesta -->
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center">
+                                <div class="card border-0 formulario">
+                                    <div class="card-body hover-overflow">
+                                        <div *ngFor="let opcion of pregunta.respuesta.opciones; let opIndex = index">
+                                            <label [for]="opcion+pregunta.id" class="btn mb-2"
+                                                [ngClass]="{'checked-background': isOptionSelected(pregunta.id, opcion)}">
+                                                <input type="checkbox" [id]="opcion+pregunta.id" [value]="opcion"
+                                                    [checked]="isOptionSelected(pregunta.id, opcion)"
+                                                    (change)="onCheckboxChange(pregunta.id, opcion); guardarRespuestaTemporal(pregunta.id, opcion)"
+                                                    class="btn-check">
+                                                {{ opcion }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- Fin template preguntas -->
+            </div>
+
+            <!-- Inicio template MODAL #saludo -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close fs-3" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body py-5">
+                            <div class="row">
+                                <div class="col-xs-12 d-flex justify-content-center align-self-center mb-5">
+                                    <h2 class="fw-bold">Gracias por responder la encuesta</h2>
+                                </div>
+                                <div class="col-xs-12 d-flex justify-content-center">
+                                    <div class="card border-0 formulario">
+                                        <div class="card-body hover-overflow">
+                                            <button type="submit" class="btn" data-bs-dismiss="modal">
+                                                Finalizar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Botón trigger del Modal -->
+            <div class="container-fluid position-sticky d-flex flex-row justify-content-center btn-enviar"
+                *ngIf="this.currentBlock + 1 === this.preguntas.length">
+                <button type="button" class="btn btn-dark  text-light rounded-5 px-5 py-3 fs-4 fw-bold"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop">Finalizar</button>
+            </div>
+            <!-- Fin template #saludo -->
+        </div>
+
+    </form>
+
+    <!-- Hamburguer menu -->
+    <article class="ham-menu-formulario">
+        <app-ham-menu></app-ham-menu>
+    </article>
+
+    <!-- Counter -->
+    <article>
+        <div class="counter d-flex flex-column">
+            <p>{{this.currentBlock + 1}} / {{this.preguntas.length}}</p>
+        </div>
+    </article>
+
+    <!-- Volver a la pregunta anterior -->
+    <button (click)="moveBlock('prev')" class="prev" [ngClass]="{'show-button': showButtonPrev}"
+        *ngIf="currentBlock > 0">
+        <img src="../../../../assets/logos/up-arrow.svg" alt="logo-subir-pregunta">
+    </button>
+
+    <!-- Pasar a la pregunta siguiente -->
+    <button (click)="moveBlock('next')" class="next" [ngClass]="{'show-button': showButtonNext}">
+        <img src="../../../../assets/logos/down-arrow.svg" alt="logo-bajar-pregunta">
+    </button>
+
+</section>

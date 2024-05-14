@@ -1,0 +1,253 @@
+div.slider-container {
+    overflow: hidden;
+    position: relative;
+    height: 99dvh;
+}
+
+div.viewport {
+    transition: transform 0.5s linear;
+}
+
+div.intro-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    height: 100dvh;
+}
+
+/* Afecta a todos los section en gral.*/
+div.row {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+}
+
+
+/* Scroll Up */
+.prev {
+    cursor: pointer;
+    scroll-behavior: smooth;
+    display: none;
+}
+
+.prev img {
+    position: fixed;
+    bottom: 103px;
+    right: 13px;
+    width: 30px;
+    height: auto;
+}
+
+.next {
+    cursor: pointer;
+    scroll-behavior: smooth;
+    display: none;
+}
+
+.next img {
+    position: fixed;
+    bottom: 50px;
+    right: 13px;
+    width: 30px;
+    height: auto;
+}
+
+.show-button {
+    display: contents;
+}
+
+/* Cerrar pantalla completa */
+
+.close {
+    cursor: pointer;
+    display: block;
+}
+
+.close img {
+    position: fixed;
+    top: 40px;
+    left: 13px;
+    width: 30px;
+    height: auto;
+}
+
+button.open {
+    cursor: pointer;
+    display: block;
+}
+
+.open img {
+    position: fixed;
+    top: 40px;
+    left: 13px;
+    width: 30px;
+    height: auto;
+}
+
+button[type="submit"] {
+    width: 100%;
+    border-radius: 11px;
+    cursor: pointer;
+    padding: 0.71rem 1.4rem;
+    font-size: var(--font-medium);
+    color: var(--dark-solid);
+    background-color: var(--dark-bg-shadow);
+    border: 2px solid black;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--primary-yellow-solid);
+    box-shadow: 1px 3px 8px -2px var(--dark-bg-solid);
+}
+
+input[type="submit"] {
+    background: transparent;
+}
+
+
+label.btn {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0.71rem 1.4rem;
+    font-weight: 500;
+    color: var(--dark-solid);
+    background-color: var(--dark-bg-shadow);
+    border: 2px solid black;
+}
+
+label.btn:hover {
+    background-color: var(--primary-yellow-solid);
+    box-shadow: 1px 3px 8px -2px var(--dark-bg-solid);
+}
+
+
+/************ CHECKBOX SELECCIONADOS **************/
+
+label.checked-background {
+    background-color: var(--primary-yellow-solid);
+}
+
+/*************  PROGRESSBAR  *************/
+
+.taskbar {
+    width: 100%;
+    background-color: #fff;
+    height: 0.6em;
+}
+
+.taskbar-progress {
+    height: 100%;
+    background-color: #FDD306;
+    width: 0%;
+    max-width: 100%;
+    overflow-x: auto; /*El contenido del saludo se agranda, resultado del computo [style.width] en */
+}
+
+
+/************* BANNER NOMBRE ENCUESTA *******************/
+
+div.encuesta-nombre {
+    background-color: rgba(253, 227, 98, 0.849);
+    padding: 0.5rem 1rem;
+    font-size: var(--font-xsmall);
+    text-align: center;
+    font-weight: 700;
+    width: 100%;
+}
+
+
+/******************* Media Queries **********************/
+
+/*Celulares*/
+
+@media (max-width: 767px) {
+    section {
+        background: white;
+        height: 100dvh;
+    }
+
+    /* titulares h1, h2, h3, h4*/
+    div.titulares {
+        padding-bottom: 1.5rem;
+    }
+
+    div.formulario {
+        width: 80%;
+    }
+
+    div.titulo {
+        width: 80%;
+    }
+
+    /*Al habilitar el viewport en Scroll, se ocultan los botones*/
+    .prev,
+    .next {
+        display: none;
+    }
+
+    /* .prev img {
+        position: fixed;
+        bottom: 90px;
+        right: 8px;
+        width: 30px;
+        height: auto;
+    }
+
+    .next img {
+        position: fixed;
+        bottom: 50px;
+        right: 8px;
+        width: 30px;
+        height: auto;
+    }
+
+    .open img {
+        position: fixed;
+        top: 40px;
+        right: 7px;
+        width: 30px;
+        height: auto;
+    }
+
+    .close img {
+        position: fixed;
+        top: 40px;
+        right: 7px;
+        width: 30px;
+        height: auto;
+    } */
+
+    div.slider-container {
+        overflow: scroll;
+        height: 99dvh;
+    }
+
+    div.viewport {
+        transition: none;
+    }
+
+}
+
+
+/* PC o Tv's */
+@media (min-width: 768px) and (max-width: 1800px) {
+
+
+    div.titulo {
+        width: 80%;
+    }
+
+    div.titulares h2 {
+        font-size: var(--font-display);
+    }
+
+    div.formulario {
+        width: 75%;
+    }
+
+}

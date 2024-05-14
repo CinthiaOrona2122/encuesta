@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 :root {
+
     /* Palette */
     --primary-yellow-solid: #fdd306;
     --primary-yellow-900: rgba(253, 211, 6, 0.9);
@@ -11,7 +12,7 @@
     --primary-blue-solid: #0693e3;
     --primary-blue-900: rgba(6, 147, 227, 0.9);
     --primary-blue-500: rgba(6, 147, 227, 0.5);
-    --primary-blue-300: rgba(6, 147, 227, 0.3);
+    --primary-blue-300: rgba(6, 147, 227, 0.302);
 
     --secondary-orange-solid: #f39c12;
     --secondary-orange-900: rgba(243, 156, 18, 0.9);
@@ -30,6 +31,7 @@
     --dark-300: rgba(31, 31, 31, 0.3);
 
     --dark-bg-solid: #34485e;
+    --dark-bg-shadow: #F3F0ED;
     --light-bg-solid: #FAFAFF;
     --light-font-solid: #FFFFFF;
 
@@ -39,22 +41,43 @@
 
     /*Font Size*/
 
+    /*Extra Titular*/
+    --font-jumbo: 3.5em;
+    /*h1*/
+
     /*Titulares*/
     --font-display: 2.3em;
-    /*h1*/
-    --font-large: 2em;
     /*h2*/
-    --font-medium: 1.7em;
+    --font-large: 2em;
     /*h3*/
-    --font-regular: 1.4em;
+    --font-medium: 1.7em;
     /*h4*/
+    /*Extra normal font*/
+    --font-regular: 1.5em;
+    /*h5*/
 
-    /*Cuerpo*/
-    --font-small: 1.5em;
     /*p Bajada de titulares*/
     --font-xsmall: 1.2em;
     /*p Textos lectura*/
 
+
+    /* Spacing*/
+    --spacing-128: 12.8rem;
+    /* 204px */
+    --spacing-68: 6.8rem;
+    /* 108px */
+    --spacing-65: 5rem;
+    /* 65px */
+    --spacing-36: 3.6rem;
+    /* 58px */
+    --spacing-28: 2.8rem;
+    /* 45px */
+    --spacing-16: 1.6rem;
+    /* 26px */
+    --spacing-12: 1.2rem;
+    /* 19px */
+    --spacing-8: 0.8rem;
+    /* 13px */
 }
 
 
@@ -64,17 +87,121 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-li {
-    list-style: none;
-}
-
-a {
-    cursor: pointer;
-    text-decoration: none;
+    font-family: var(--base-font);
 }
 
 html {
     font-size: 62.5%;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    padding: 0;
+}
+
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: var(--font-regular);
+    color: var(--dark-solid);
+}
+
+a:hover {
+    color: var(--secondary-magenta-solid);
+}
+
+
+/*Scrollbar navegador amarillo (chrome)*/
+
+body::-webkit-scrollbar {
+    position: absolute;
+    width: .7rem;
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--primary-yellow-solid);
+    border-radius: 6px;
+}
+
+
+
+section {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right,
+            #f3f0ed 0%,
+            #f3f0ed 49%,
+            #c5c4c494 1%,
+            #fff 50%,
+            #fff 100%);
+}
+
+
+h1 {
+    font-size: var(--font-jumbo);
+    font-weight: 700;
+}
+
+h2 {
+    font-size: var(--font-display);
+    font-weight: 700;
+}
+
+h3 {
+    font-size: var(--font-large);
+}
+
+h4 {
+    font-size: var(--font-medium);
+}
+
+p {
+    font-size: var(--font-xsmall);
+}
+
+
+
+
+/*Celulares*/
+@media (max-width: 767px) {
+    section {
+        background: #ffffff;
+    }
+}
+
+@media (color-scheme-light: dark) {
+    :root {
+
+        --dark-solid: #F3F0ED;
+        --dark-900: rgba(243, 240, 237, 0.9);
+        --dark-500: rgba(243, 240, 237, 0.5);
+        --dark-300: rgba(243, 240, 237, 0.3);
+
+        --dark-bg-solid: #1F1F1F;
+        --dark-bg-shadow: #34485e;
+        --light-bg-solid: #FAFAFF;
+        --light-font-solid: #FFFFFF;
+    }
+    
+    div.card {
+        background: transparent;
+    }
+
+
 }
